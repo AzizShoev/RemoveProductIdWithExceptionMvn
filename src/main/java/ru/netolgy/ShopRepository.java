@@ -26,6 +26,11 @@ public class ShopRepository {
      * @param product — добавляемый товар
      */
     public void add(Product product) {
+        for (Product p : products) {
+            if (p.getId() == product.getId()) {
+                throw new AlreadyExistsException("Element with id: " + product.getId() + " already exists in the repository.");
+            }
+        }
         products = addToArray(products, product);
     }
 
